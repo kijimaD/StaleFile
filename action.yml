@@ -5,15 +5,19 @@ inputs:
   github_token:
     description: 'GitHub token(write + read)'
     required: true
-  paths:
-    description: 'Paths to be checked'
+  file_extension:
+    description: 'File extension to be checked'
     required: false
-    default: './'
-  ignores:
-    description: 'Paths to be ignored'
+    default: '*.md'
+  include:
+    description: 'Path to be included'
     required: false
-    default: ''
-  daysUntilStale:
+    default: '.*'
+  exclude:
+    description: 'Path to be excluded'
+    required: false
+    default: '*'
+  days_until_stale:
     description: 'stale day'
     required: false
     default: 30
@@ -32,6 +36,8 @@ runs:
     - name: check stale file
       id: check
       shell: bash
+      env:
+        FILE_EXTENSION: ${{ input.file_extension }}
       run: |
         RESULT=$(ruby ./src/main.rb)
         RESULT="${RESULT//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
@@ -47,7 +53,7 @@ runs:
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
       with:
-        github_token: ${{ inputs.GITHUB_TOKEN }}
+        github_token: ${{ inputs.GITHUB_TOKEN }} # TODO: is really need?
         title: 🏜StaleFile | ${{ steps.today.outputs.stdout }}
         body: ${{ steps.check.outputs.stdout }}
         labels: ${{ inputs.label }}

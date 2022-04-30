@@ -19,6 +19,8 @@ jobs:
       - uses: ./
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          label: StaleFile
+          file_extension: '*.yml'
 
   test-passing:
     needs: [ test ]
