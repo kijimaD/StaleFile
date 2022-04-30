@@ -27,8 +27,9 @@ runs:
 
     - name: check stale file
       id: check
-      run: ruby ${{ github.action_path }}/src/main.rb
       shell: bash
+      run: |
+        echo "::set-output name=stdout::$(ruby ${{ github.action_path }}/src/main.rb)"
 
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
