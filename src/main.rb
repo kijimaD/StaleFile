@@ -1,3 +1,5 @@
+# 件数もほしいな。検索対象件数と、staleだった件数/freshだった件数
+
 module StaleFile
   class Search
     attr_accessor :stales
@@ -69,4 +71,4 @@ module StaleFile
   end
 end
 
-puts StaleFile::Report.call
+STDOUT.puts StaleFile::Report.call
