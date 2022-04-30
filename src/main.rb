@@ -49,7 +49,7 @@ module StaleFile
     def msg
       <<~MSG.chomp
         ## StaleFile
-        These are staled files! Please check content keeping fresh.
+        These are staled files! Please check content.
 
       MSG
     end
