@@ -37,12 +37,9 @@ runs:
       uses: actions-ecosystem/action-create-issue@v1
       with:
         github_token: ${{ inputs.GITHUB_TOKEN }}
-        title: |
-          🏜StaleFile | ${date "+%Y-%m-%d"}
-        body: |
-          ${{ steps.check.outputs.stdout }}
-        labels: |
-          StaleFile
+        title: today=$(date "+%Y-%m-%d") && echo "🏜StaleFile | ${today}"
+        body: ${{ steps.check.outputs.stdout }}
+        labels: StaleFile
 
 branding:
   icon: "chevron-up"
