@@ -21,7 +21,7 @@ module StaleFile
     # extension, include, exclude
     def command
       <<~COMMAND.chomp
-      git ls-files ENV['FILE_EXTENSION'] | grep ".*" | grep -v "*" | xargs -I{} -- git log -1 --format="%ai {}" {}
+      git ls-files #{ENV['FILE_EXTENSION']} | grep ".*" | grep -v "*" | xargs -I{} -- git log -1 --format="%ai {}" {}
       COMMAND
     end
   end
