@@ -2,6 +2,9 @@ name: "Stale File"
 description: "Stale File"
 author: "kijimaD"
 inputs:
+  github_token:
+    description: 'GitHub token(write + read)'
+    required: true
   paths:
     description: 'Paths to be checked'
     required: false

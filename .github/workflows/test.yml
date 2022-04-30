@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-20.04, ubuntu-18.04, macos-11, macos-10.15 ]
+        os: [ ubuntu-20.04 ]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 2
 
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   test-passing:
     needs: [ test ]
