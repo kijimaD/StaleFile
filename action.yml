@@ -1,0 +1,28 @@
+name: "Stale File"
+description: "Stale File"
+author: "kijimaD"
+inputs:
+  paths:
+    description: 'Paths to be checked'
+    required: false
+    default: ['./']
+  ignores:
+    description: 'Paths to be ignored'
+    required: false
+    default: ['']
+  daysUntilStale:
+    description: 'stale day'
+    required: false
+    default: 30
+runs:
+  # staleファイルを検索+結果を整形してoutput
+  using: "ruby"
+  main: "src/main.rb"
+
+  # issue作成
+
+  # コメント作成
+
+branding:
+  icon: "chevron-up"
+  color: "green"
