@@ -38,9 +38,6 @@ runs:
         labels: |
           Stale File
 
-  # issue作成
-    - name:
-
   # コメント作成
 
 branding:
