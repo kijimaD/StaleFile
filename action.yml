@@ -17,6 +17,10 @@ inputs:
     description: 'stale day'
     required: false
     default: 30
+  label:
+    description: 'StaleFile issue label'
+    required: false
+    default: ''
 runs:
   using: "composite"
   steps:
@@ -29,9 +33,9 @@ runs:
       id: check
       shell: bash
       run: |
-        result=$(ruby ./src/main.rb)
-        result="${result//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
-        echo "::set-output name=stdout::$result"
+        RESULT=$(ruby ./src/main.rb)
+        RESULT="${RESULT//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
+        echo "::set-output name=stdout::$RESULT"
 
     - name: Set current datetime as env variable
       id: today
@@ -45,9 +49,8 @@ runs:
       with:
         github_token: ${{ inputs.GITHUB_TOKEN }}
         title: 🏜StaleFile | ${{ steps.today.outputs.stdout }}
-        body: |
-          ${{ steps.check.outputs.stdout }}
-        labels: StaleFile
+        body: ${{ steps.check.outputs.stdout }}
+        labels: ${{ inputs.label }}
 
 branding:
   icon: "chevron-up"
