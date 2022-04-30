@@ -36,7 +36,9 @@ runs:
     - name: Set current datetime as env variable
       id: today
       shell: bash
-      run: echo "::set-output name=stdout::${date +'%Y-%m-%d'}"
+      run: |
+        DATE=$(date +'%Y-%m-%d')
+        echo "::set-output name=stdout::$DATE"
 
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
