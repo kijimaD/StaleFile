@@ -71,4 +71,4 @@ module StaleFile
   end
 end
 
-STDOUT.puts StaleFile::Report.call
+STDOUT.write StaleFile::Report.call
