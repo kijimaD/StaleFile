@@ -35,8 +35,7 @@ runs:
 
     - name: Set current datetime as env variable
       shell: bash
-      env:
-        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
