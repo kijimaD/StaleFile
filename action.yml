@@ -5,11 +5,11 @@ inputs:
   paths:
     description: 'Paths to be checked'
     required: false
-    default: ['./']
+    default: './'
   ignores:
     description: 'Paths to be ignored'
     required: false
-    default: ['']
+    default: ''
   daysUntilStale:
     description: 'stale day'
     required: false
