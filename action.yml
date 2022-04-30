@@ -35,9 +35,7 @@ runs:
       with:
         github_token: ${{ inputs.GITHUB_TOKEN }}
         title: 'test'
-        body: |
-          ## To do
-          + [ ] test
+        body: ${{ steps.check.outputs.stdout }}
         labels: |
           Stale File
 
