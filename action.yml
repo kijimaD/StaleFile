@@ -29,7 +29,9 @@ runs:
       id: check
       shell: bash
       run: |
-        echo "::set-output name=stdout::$(ruby ${{ github.action_path }}/src/main.rb)"
+        result=$(ruby ./src/main.rb)
+        result="${result//$'\n'/\\n}" # escape
+        echo "::set-output name=stdout::$escape"
 
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
