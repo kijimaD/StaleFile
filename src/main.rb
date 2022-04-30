@@ -1,7 +1,5 @@
 require 'open3'
 
-# 件数もほしいな。検索対象件数と、staleだった件数/freshだった件数
-
 module StaleFile
   class Search
     attr_accessor :stales
@@ -20,8 +18,9 @@ module StaleFile
 
     private
 
+    # extension, include, exclude
     def command
-      'git ls-files -z *.md | xargs -0 -I{} -- git log -1 --format="%ai {}" {}'
+      'git ls-files "*.md" | grep ".*" | grep -v "*" | xargs -I{} -- git log -1 --format="%ai {}" {}'
     end
   end
 
@@ -48,7 +47,7 @@ module StaleFile
     def print
       <<~PRINT
         #{msg}
-        #{header}
+        #{table_header}
         #{table}
       PRINT
     end
@@ -63,7 +62,7 @@ module StaleFile
       MSG
     end
 
-    def header
+    def table_header
       <<~HEADER.chomp
         | File | Last modified |
         | ---- | ------------- |
@@ -76,6 +75,10 @@ module StaleFile
 
     def table_row(stale)
       "| #{ stale.name } | #{stale.last_modified_date} |"
+    end
+
+    def condition
+      # using condition, count
     end
   end
 end
