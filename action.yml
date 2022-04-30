@@ -31,7 +31,8 @@ runs:
       run: |
         result=$(ruby ./src/main.rb)
         result="${result//$'\n'/\\n}" # escape
-        echo "::set-output name=stdout::$escape"
+        echo $result
+        echo "::set-output name=stdout::$result"
 
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
