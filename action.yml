@@ -33,11 +33,15 @@ runs:
         result="${result//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
         echo "::set-output name=stdout::$result"
 
+    - name: Set current datetime as env variable
+      env:
+        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
       with:
         github_token: ${{ inputs.GITHUB_TOKEN }}
-        title: ${{ echo "🏜StaleFile | $(date "+%Y-%m-%d")" }}
+        title: 🏜StaleFile | ${{env.CURRENT_DATETIME}}
         body: |
           ${{ steps.check.outputs.stdout }}
         labels: StaleFile
