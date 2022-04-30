@@ -37,7 +37,7 @@ runs:
       id: check
       shell: bash
       env:
-        FILE_EXTENSION: ${{ input.file_extension }}
+        FILE_EXTENSION: ${{ inputs.file_extension }}
       run: |
         RESULT=$(ruby ./src/main.rb)
         RESULT="${RESULT//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
