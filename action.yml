@@ -30,19 +30,20 @@ runs:
       shell: bash
       run: |
         result=$(ruby ./src/main.rb)
-        result="${result//$'\n'/'%0A'}" # escape
+        result="${result//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
         echo "::set-output name=stdout::$result"
 
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
       with:
         github_token: ${{ inputs.GITHUB_TOKEN }}
-        title: 'test'
-        body: ${{ steps.check.outputs.stdout }}
+        title: |
+          today=$(date "+%Y-%m-%d")
+          echo "🏜StaleFile | ${today}"
+        body: |
+          ${{ steps.check.outputs.stdout }}
         labels: |
-          Stale File
-
-  # コメント作成
+          StaleFile
 
 branding:
   icon: "chevron-up"
