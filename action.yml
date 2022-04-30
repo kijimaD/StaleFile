@@ -30,8 +30,7 @@ runs:
       shell: bash
       run: |
         result=$(ruby ./src/main.rb)
-        result="${result//$'\n'/\\n}" # escape
-        echo $result
+        result="${result//$'\n'/'%0A'}" # escape
         echo "::set-output name=stdout::$result"
 
     - name: Create an issue
