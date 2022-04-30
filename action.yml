@@ -15,15 +15,15 @@ inputs:
     required: false
     default: 30
 runs:
-  # staleファイルを検索+結果を整形してoutput
-    steps:
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
         ruby-version: 3.1
-    - name: Run script
-      run: |
-        ruby src/main.rb
+    - run: |
+        ruby ${{ github.action_path }}/src/main.rb
+      shell: bash
 
   # issue作成
 
