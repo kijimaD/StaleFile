@@ -30,7 +30,6 @@ runs:
     - name: Create an issue
       uses: actions-ecosystem/action-create-issue@v1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         title: 'test'
         body: |
           ## To do
