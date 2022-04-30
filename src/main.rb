@@ -1,3 +1,5 @@
+require 'open3'
+
 # 件数もほしいな。検索対象件数と、staleだった件数/freshだった件数
 
 module StaleFile
@@ -7,23 +9,28 @@ module StaleFile
     def initialize
       @stales = []
 
-      Dir["./*.md"].each do |file|
-        @stales << Stale.new(file)
+      rows = Open3.capture2(command).first.split("\n")
+      rows.each do |row|
+        date = row.split(" ")[0]
+        name = row.split(" ")[3]
+
+        @stales << Stale.new(name, date)
       end
+    end
+
+    private
+
+    def command
+      'git ls-files -z *.md | xargs -0 -I{} -- git log -1 --format="%ai {}" {}'
     end
   end
 
   class Stale
-    def initialize(file)
-      @file = file
-    end
+    attr_accessor :name, :last_modified_date
 
-    def last_time_abs
-      File.mtime(@file)
-    end
-
-    def name
-      @file.to_s
+    def initialize(name, last_modified_date)
+      @name = name
+      @last_modified_date = last_modified_date
     end
   end
 
@@ -46,6 +53,8 @@ module StaleFile
       PRINT
     end
 
+    private
+
     def msg
       <<~MSG.chomp
         ## StaleFile
@@ -66,7 +75,7 @@ module StaleFile
     end
 
     def table_row(stale)
-      "| #{ stale.name } | #{stale.last_time_abs} |"
+      "| #{ stale.name } | #{stale.last_modified_date} |"
     end
   end
 end
