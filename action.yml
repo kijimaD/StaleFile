@@ -16,8 +16,12 @@ inputs:
     default: 30
 runs:
   # staleファイルを検索+結果を整形してoutput
-  using: "ruby"
-  main: "src/main.rb"
+    steps:
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
+      with:
+        ruby-version: 3.1
+    - main: "src/main.rb"
 
   # issue作成
 
