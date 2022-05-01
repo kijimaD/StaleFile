@@ -15,7 +15,7 @@ on:
         required: false
       days_until_stale:
         required: false
-      header_comment:
+      issue_comment:
         required: false
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
           include: ${{ github.event.inputs.include || '.*' }}
           exclude: ${{ github.event.inputs.exclude || '*' }}
           days_until_stale: ${{ github.event.inputs.days_until_stale || 30 }}
-          header_comment: ${{ github.event.inputs.header_comment || 'hello' }}
+          issue_comment: ${{ github.event.inputs.issue_comment || 'Below are files that may have been staled. Please check it!' }}
 
   test-passing:
     needs: [ test ]

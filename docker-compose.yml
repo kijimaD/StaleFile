@@ -13,7 +13,7 @@ services:
       INCLUDE: '.*'
       EXCLUDE: '*'
       DAYS_UNTIL_STALE: '0'
-      HEADER_COMMENT: 'Below are files that may have been staled. Please check it!'
+      ISSUE_COMMENT: 'Below are files that may have been staled. Please check it!'
     depends_on:
       - bundle
 

@@ -26,7 +26,7 @@ module StaleFile
     def msg
       <<~MSG.chomp
         ## StaleFile
-        #{ENV.fetch('HEADER_COMMENT')}
+        #{ENV.fetch('ISSUE_COMMENT')}
       MSG
     end
 
