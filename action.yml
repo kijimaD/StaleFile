@@ -1,5 +1,5 @@
-name: "Stale File"
-description: "Stale File"
+name: "StaleFile"
+description: "Check stale files and report."
 author: "kijimaD"
 inputs:
   github_token:
@@ -24,7 +24,7 @@ inputs:
   days_until_stale:
     description: 'Criteria day count for deeming stale'
     required: false
-    default: 30
+    default: 90
   issue_comment:
     description: 'Issue top comment'
     required: false
@@ -73,5 +73,5 @@ runs:
         labels: ${{ inputs.label }}
 
 branding:
-  icon: "chevron-up"
+  icon: "file-text"
   color: "green"
