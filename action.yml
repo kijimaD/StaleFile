@@ -5,26 +5,23 @@ inputs:
   github_token:
     description: 'GitHub token(write + read)'
     required: true
-  file_extension:
-    description: 'File extension to be checked'
-    required: false
-    default: '*.md'
-  include:
-    description: 'Path to be included'
-    required: false
-    default: '.*'
-  exclude:
-    description: 'Path to be excluded'
-    required: false
-    default: '*'
-  days_until_stale:
-    description: 'stale day'
-    required: false
-    default: 30
   label:
     description: 'StaleFile issue label'
     required: false
     default: ''
+  file_extension:
+    description: 'File extension to be checked'
+    required: false
+  include:
+    description: 'Path to be included'
+    required: false
+  exclude:
+    description: 'Path to be excluded'
+    required: false
+  days_until_stale:
+    description: 'stale day'
+    required: false
+    default: 30
 runs:
   using: "composite"
   steps:
@@ -38,6 +35,8 @@ runs:
       shell: bash
       env:
         FILE_EXTENSION: ${{ inputs.file_extension }}
+        INCLUDE: ${{ inputs.include }}
+        EXCLUDE: ${{ inputs.exclude }}
       run: |
         RESULT=$(ruby ./src/main.rb)
         RESULT="${RESULT//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852

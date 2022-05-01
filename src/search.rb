@@ -21,8 +21,20 @@ module StaleFile
     # extension, include, exclude
     def command
       <<~COMMAND.chomp
-      git ls-files #{ENV['FILE_EXTENSION']} | grep ".*" | grep -v "*" | xargs -I{} -- git log -1 --format="%ai {}" {}
+        git ls-files "#{file_extension}" | grep "#{include}" | grep -v "#{exclude}" | xargs -I{} -- git log -1 --format="%ai {}" {}
       COMMAND
+    end
+
+    def file_extension
+      ENV.fetch('FILE_EXTENSION', '*.md')
+    end
+
+    def include
+      ENV.fetch('INCLUDE', '.*')
+    end
+
+    def exclude
+      ENV.fetch('EXCLUDE', '*')
     end
   end
 
