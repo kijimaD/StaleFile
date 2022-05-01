@@ -12,12 +12,15 @@ inputs:
   file_extension:
     description: 'File extension to be checked'
     required: false
+    default: '*.md'
   include:
     description: 'Path to be included'
     required: false
+    default: '.*'
   exclude:
     description: 'Path to be excluded'
     required: false
+    default: '*'
   days_until_stale:
     description: 'stale day'
     required: false

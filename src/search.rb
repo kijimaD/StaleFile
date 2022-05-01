@@ -26,15 +26,15 @@ module StaleFile
     end
 
     def file_extension
-      ENV.fetch('FILE_EXTENSION', '*.md')
+      ENV.fetch('FILE_EXTENSION')
     end
 
     def include
-      ENV.fetch('INCLUDE', '.*')
+      ENV.fetch('INCLUDE')
     end
 
     def exclude
-      ENV.fetch('EXCLUDE', '*')
+      ENV.fetch('EXCLUDE')
     end
   end
 
