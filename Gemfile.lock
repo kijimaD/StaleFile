@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    jekyll-timeago (0.14.0)
+      mini_i18n (>= 0.8.0)
+    mini_i18n (0.8.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  jekyll-timeago
+
+BUNDLED WITH
+   2.3.7

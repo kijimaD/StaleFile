@@ -5,9 +5,23 @@ services:
     image: ruby
     volumes:
       - .:/ruby
+      - stale_gem:/usr/local/bundle
     command: ruby ./src/main.rb
     working_dir: /ruby
     environment:
       FILE_EXTENSION: '*.md'
       INCLUDE: '.*'
       EXCLUDE: '*'
+    depends_on:
+      - bundle
+
+  bundle:
+    image: ruby
+    volumes:
+      - .:/ruby
+      - stale_gem:/usr/local/bundle
+    command: bundle
+    working_dir: /ruby
+
+volumes:
+  stale_gem:
