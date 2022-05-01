@@ -52,7 +52,7 @@ runs:
         DAYS_UNTIL_STALE: ${{ inputs.days_until_stale }}
         ISSUE_COMMENT: ${{ inputs.issue_comment }}
       run: |
-        RESULT=$(ruby ./src/main.rb)
+        RESULT=$(ruby ${{ github.action_path }}/src/main.rb)
         RESULT="${RESULT//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
         echo "::set-output name=stdout::$RESULT"
 
