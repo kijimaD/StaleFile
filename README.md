@@ -1,3 +1,4 @@
+[![Test](https://github.com/kijimaD/stale-file/actions/workflows/test.yml/badge.svg)](https://github.com/kijimaD/stale-file/actions/workflows/test.yml)
 # StaleFile
 
 StaleFile is GitHub Actions for checking stale file and reporting.
@@ -9,7 +10,7 @@ Use cases:
 
 ## Usage
 
-Basic usage:
+Basic: use default parameters
 
 ```yml
 steps:
