@@ -26,8 +26,7 @@ module StaleFile
     def msg
       <<~MSG.chomp
         ## StaleFile
-        These are staled files! Please check content.
-
+        #{ENV.fetch('HEADER_COMMENT')}
       MSG
     end
 

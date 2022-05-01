@@ -15,6 +15,8 @@ on:
         required: false
       days_until_stale:
         required: false
+      header_comment:
+        required: false
 
 jobs:
   test:

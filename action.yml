@@ -22,9 +22,14 @@ inputs:
     required: false
     default: '*'
   days_until_stale:
-    description: 'stale day'
+    description: 'Criteria day count for deeming stale'
     required: false
     default: 30
+  header_comment:
+    description: 'Issue header comment'
+    required: false
+    default: 'Below are files that may have been staled... Please check it!'
+
 runs:
   using: "composite"
   steps:
@@ -45,6 +50,7 @@ runs:
         INCLUDE: ${{ inputs.include }}
         EXCLUDE: ${{ inputs.exclude }}
         DAYS_UNTIL_STALE: ${{ inputs.days_until_stale }}
+        HEADER_COMMENT: ${{ inputs.header_comment }}
       run: |
         RESULT=$(ruby ./src/main.rb)
         RESULT="${RESULT//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
