@@ -21,7 +21,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           label: StaleFile
           file_extension: '*.md'
-          days_until_stale: 1
+          days_until_stale: 30
 
   test-passing:
     needs: [ test ]

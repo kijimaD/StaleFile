@@ -44,6 +44,7 @@ runs:
         FILE_EXTENSION: ${{ inputs.file_extension }}
         INCLUDE: ${{ inputs.include }}
         EXCLUDE: ${{ inputs.exclude }}
+        DAYS_UNTIL_STALE: ${{ inputs.days_until_stale }}
       run: |
         RESULT=$(ruby ./src/main.rb)
         RESULT="${RESULT//$'\n'/'%0A'}" # https://github.community/t/set-output-truncates-multiline-strings/16852
