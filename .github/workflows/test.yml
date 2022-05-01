@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      days_until_stale:
+        required: false
 
 jobs:
   test:
@@ -21,7 +24,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           label: StaleFile
           file_extension: '*.md'
-          days_until_stale: 30
+          days_until_stale: ${{ github.event.inputs.days_until_stale || 30 }}
 
   test-passing:
     needs: [ test ]

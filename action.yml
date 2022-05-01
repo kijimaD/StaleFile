@@ -58,7 +58,7 @@ runs:
         echo "::set-output name=stdout::$DATE"
 
     - name: Create an issue
-      if: steps.check.outputs.stdout
+      if: steps.check.outputs.stdout # If not exist stale file, don't create issue.
       uses: actions-ecosystem/action-create-issue@v1
       with:
         github_token: ${{ inputs.GITHUB_TOKEN }} # TODO: is really need?
