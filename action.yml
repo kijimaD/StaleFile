@@ -3,7 +3,7 @@ description: "Stale File"
 author: "kijimaD"
 inputs:
   github_token:
-    description: 'GitHub token(write + read)'
+    description: 'GitHub repository token(write + read permission)'
     required: true
   label:
     description: 'StaleFile issue label'
@@ -61,7 +61,7 @@ runs:
       if: steps.check.outputs.stdout # If not exist stale file, don't create issue.
       uses: actions-ecosystem/action-create-issue@v1
       with:
-        github_token: ${{ inputs.GITHUB_TOKEN }} # TODO: is really need?
+        github_token: ${{ inputs.github_token }}
         title: 🏜StaleFile | ${{ steps.today.outputs.stdout }}
         body: ${{ steps.check.outputs.stdout }}
         labels: ${{ inputs.label }}
