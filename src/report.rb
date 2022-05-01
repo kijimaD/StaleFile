@@ -40,7 +40,7 @@ module StaleFile
     end
 
     def table_row(stale)
-      "| #{ stale.name } | #{stale.last_modified_date} |"
+      "| #{ stale.name } | #{stale.last_modified_date} (#{stale.relative_date_str}) |"
     end
 
     def condition

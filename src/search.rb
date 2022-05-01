@@ -9,10 +9,10 @@ module StaleFile
 
       rows = Open3.capture2(grep_command).first.split("\n")
       rows.each do |row|
-        date = row.split(" ")[0]
         name = row.split(" ")[3]
+        date = Date.parse(row.split(" ")[0])
 
-        @stales << Stale.new(name, date)
+        build_stale(name, date)
       end
     end
 
@@ -34,6 +34,11 @@ module StaleFile
 
     def exclude
       ENV.fetch('EXCLUDE')
+    end
+
+    def build_stale(name, date)
+      stale = Stale.new(name, date)
+      @stales << stale if stale.days_count >= ENV['DAYS_UNTIL_STALE'].to_i
     end
   end
 end

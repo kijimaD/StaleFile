@@ -12,6 +12,7 @@ services:
       FILE_EXTENSION: '*.md'
       INCLUDE: '.*'
       EXCLUDE: '*'
+      DAYS_UNTIL_STALE: '60'
     depends_on:
       - bundle
 
