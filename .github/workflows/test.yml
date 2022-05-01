@@ -32,9 +32,12 @@ jobs:
       - uses: ./
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          label: StaleFile
-          file_extension: '*.md'
+          label: ${{ github.event.inputs.file_extension || 'StaleFile' }}
+          file_extension: ${{ github.event.inputs.file_extension || '*.md' }}
+          include: ${{ github.event.inputs.include || '.*' }}
+          exclude: ${{ github.event.inputs.exclude || '*' }}
           days_until_stale: ${{ github.event.inputs.days_until_stale || 30 }}
+          header_comment: ${{ github.event.inputs.header_comment || 'hello' }}
 
   test-passing:
     needs: [ test ]
