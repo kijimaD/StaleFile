@@ -3,14 +3,17 @@ module StaleFile
     def self.call
       search = StaleFile::Search.new
       report = self.new(search.stales)
-      report.print
+
+      return if search.stales.count.zero?
+
+      puts report.content
     end
 
     def initialize(stales)
       @stales = stales
     end
 
-    def print
+    def content
       <<~PRINT
         #{msg}
         #{table_header}
@@ -41,10 +44,6 @@ module StaleFile
 
     def table_row(stale)
       "| #{ stale.name } | #{stale.last_modified_date} (#{stale.relative_date_str}) |"
-    end
-
-    def condition
-      # using condition, count
     end
   end
 end

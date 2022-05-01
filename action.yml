@@ -54,6 +54,7 @@ runs:
         echo "::set-output name=stdout::$DATE"
 
     - name: Create an issue
+      if: steps.check.outputs.stdout
       uses: actions-ecosystem/action-create-issue@v1
       with:
         github_token: ${{ inputs.GITHUB_TOKEN }} # TODO: is really need?
