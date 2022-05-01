@@ -1,4 +1,4 @@
-module StateFile
+module StaleFile
   class Stale
     attr_accessor :name, :last_modified_date
 

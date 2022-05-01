@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  script:
+    image: ruby
+    volumes:
+      - .:/ruby
+    command: ruby ./src/main.rb
+    working_dir: /ruby
+    environment:
+      FILE_EXTENSION: '*.md'
+      INCLUDE: '.*'
+      EXCLUDE: '*'
