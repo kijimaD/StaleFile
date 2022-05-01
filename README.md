@@ -10,11 +10,9 @@ Use cases:
 
 ## Usage
 
-Basic: use default parameters
-
 ```yml
 steps:
-- uses: this@v2
+- uses: kijimaD/StaleFile@v0.0.1
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
