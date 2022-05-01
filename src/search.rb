@@ -8,6 +8,7 @@ module StaleFile
       @stales = []
 
       rows = Open3.capture2(grep_command).first.split("\n")
+      p rows
       rows.each do |row|
         name = row.split(" ")[3]
         date = Date.parse(row.split(" ")[0])
