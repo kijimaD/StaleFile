@@ -32,7 +32,9 @@ runs:
     - uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
       with:
         ruby-version: 3.1
-        bundle-cache: true
+
+    - name: Install dependencies
+      run: bundle install
 
     - name: check stale file
       id: check
