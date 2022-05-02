@@ -12,13 +12,38 @@ Use cases:
 
 ## Usage
 
-minumum settings:
+minumum settings example:
 
 ```yml
 steps:
 - uses: kijimaD/StaleFile@v0.0.4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }} # need write permission
+```
+
+full settings example:
+
+```yml
+name: StaleFile
+
+on:
+  schedule:
+    - cron: "0 0 1 * *" # per month
+  workflow_dispatch:
+
+jobs:
+  stale_file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: kijimaD/StaleFile@v0.0.4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          label: 'StaleFile'
+          file_extension: '*.md'
+          include: '/doc'
+          days_until_stale: 90
+          issue_comment: 'Please check!'
 ```
 
 ## ⚠Workflow permission
